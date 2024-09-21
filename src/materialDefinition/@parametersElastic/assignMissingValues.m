@@ -46,8 +46,8 @@ switch isotropy                                                             % di
                 obj.lambda = 2*obj.G.*obj.nu./(1-2*obj.nu);
             end
 
-        elseif isSet(obj,{'E','G','nu'})
-            [obj, isHandle] = makeHandles(obj,{'E','G','nu'});
+        elseif isSet(obj,{'E','G','rho'})
+            [obj, isHandle] = makeHandles(obj,{'E','G','rho'});
             if isHandle
                 obj.nu     = @(y,z) obj.E(y,z)/2/obj.G(y,z)-1;
                 obj.cs     = @(y,z) sqrt(obj.G(y,z)./obj.rho(y,z));

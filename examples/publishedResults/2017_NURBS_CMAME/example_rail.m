@@ -22,11 +22,18 @@ materials.elastic.nu = 1/3;
 geom = userMesh;                                                            % geometry defined by mesh file
 geom.fileName = 'rail2.dat';                                                % mesh file name
 geom.scaleGeometry = [1, 1]* 1/2.54*100;                                    % 
+% The geometry is defined by a 'userMesh', i.e., a mesh file created by a
+% different software. So far, only Ansys files are supported, others (gmsh,
+% Abaqus) will be provided soon. Rather than specifying details of the
+% geometry, userMesh just requires the name of the mesh file.
+% As a little peculiarity, this mesh file happened to be created in inches 
+% and also too small by a factor of 10. Hence, we use an option to scale
+% the entire geometry by a given factor. scaleGeometry is a 1x2 vector in
+% case we need different scaling factors in the y and z directions.
 
 %% settings 
 opt = option;
 opt.plotting.omitNegativeWavenumber = true;
-opt.numerics.eleOrderFunction = @(w)ceil(3+0.5*w);
 
 %% solver
 sol = solverDispersion;
@@ -44,11 +51,10 @@ plot(sol,'all',opt);
 %% compare with disperse
 ref = load('rail2017_cp.mat');
 figure
-[axH, plH] = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
+axH = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
 hold all
 plot(ref.f/1e3,ref.cp,'.k')
-a = gca;
-legend([a.Children(1),a.Children(end)],{'samwise','CMAME 2017'},'Location','best');
+legend([axH{1}.Children(1),axH{1}.Children(end)],{'samwise','CMAME 2017'},'Location','best');
 xlim([sol.fMin,sol.fMax])
 ylim([0 12])
 

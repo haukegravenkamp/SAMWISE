@@ -1,6 +1,3 @@
-clc
-clear 
-close all
 
 %% Example 5.2 Layered composite
 % Gravenkamp, Hauke, Chongmin Song, and Jens Prager. “A Numerical Approach 
@@ -27,6 +24,9 @@ geom.layers(4).thickness = 1/5;                                             % th
 geom.layers(4).material  = 2;                                               % titanium
 geom.layers(5).thickness = 1/5;                                             % thickness
 geom.layers(5).material  = 1;                                               % brass
+% Here, the plate consists of five layers; hence, we keep extending the
+% layer object and assign the materials 1 and 2 in turn. Each layer has a
+% thickness of 1/5 mm, so that the total thickness of the plate is 1 mm.
 
 
 %% solver
@@ -47,9 +47,8 @@ ref = load('composite_BrTiBrTiBr.mat');
 figure
 hold all
 plot(ref.f,ref.cp,'-k','LineWidth',1)
-[axH, plH] = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
-a = gca;
-legend([a.Children(1),a.Children(end)],{'samwise','disperse'},'Location','best');
+axH = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
+legend([axH{1}.Children(1),axH{1}.Children(end)],{'samwise','disperse'},'Location','best');
 xlim([sol.fMin,sol.fMax])
 ylim([0 11])
 

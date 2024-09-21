@@ -1,6 +1,3 @@
-clc
-clear 
-close all
 
 %% Example 5.1 Homogeneous plate
 % Gravenkamp, Hauke, Chongmin Song, and Jens Prager. “A Numerical Approach 
@@ -15,6 +12,12 @@ materials = material;                                                       % cr
 materials.elastic.G   = 1;                                                  % shear modulus
 materials.elastic.nu  = 0.3;                                                % Poisson's ratio
 materials.elastic.rho = 1;                                                  % density
+% See example_plate_Brass.m. Only, here we define the material parameters
+% explicitly, as this material is not in the database. Note that you can
+% choose almost any valid combination of elastic constants, the remaining
+% ones will be set automatically. Instead of (G,nu), you may set 
+% (E,nu), (E,G), (G,lambda), (cs,cl), (cs,nu), (cl,nu)
+% or even directly set the elasticity matrix in Voigt notation.
 
 %% geometry
 geom = plate;                                                               % initialize plate geometry
@@ -39,9 +42,8 @@ ref = load('plateHomogeneous_nu03.mat');
 figure
 hold all
 plot(ref.f,ref.cp,'-k','LineWidth',1)
-[axH, plH] = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
-a = gca;
-legend([a.Children(1),a.Children(end)],{'samwise','analytical'},'Location','best');
+axH = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
+legend([axH{1}.Children(1),axH{1}.Children(end)],{'samwise','analytical'},'Location','best');
 ylim([0 4.5])
 
 

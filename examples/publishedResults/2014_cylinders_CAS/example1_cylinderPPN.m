@@ -17,10 +17,12 @@ mat.elastic.nu  = 0.35;                                                     % Po
 mat.elastic.rho = 1;                                                        % density
 
 %% geometry
-geom = cylinder;                                                            % initialize plate geometry
+geom = cylinder;                                                            % initialize cylinder geometry
 geom.layers.thickness = 6;                                                  % thickness
 geom.layers.material  = 1;                                                  % material number
 geom.r0 = 3;
+% Here, the geometry is a cylinder, defined by the wall thickness (!),
+% inner radius, and material number
 
 %% solver
 sol = solverDispersion;
@@ -31,6 +33,13 @@ sol.nSteps = 100;
 %% options
 opt = option;
 opt.model.circumferentialOrders = 0;
+% For a cylinder, we need to define the order n of modes in the
+% circumferential direction that we wish to compute. This refers to the
+% modes proportional to exp(i*n*theta) where theta is the angle in a
+% cylindrical coordinate system.
+% The default is n = 0:1
+% Note that n=0 includes both longitudinal and torsional modes. The
+% reference solution only shows longitudinal modes.
 
 %% call program
 [geo, mat, bcd, sol, opt, res, msh] = samwise(mat, geom, sol,opt);
@@ -40,9 +49,8 @@ ref = load('cylinderPPN.mat');
 figure
 hold all
 plot(ref.f,ref.cp,'-k','LineWidth',1)
-[axH, plH] = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
-a = gca;
-legend([a.Children(1),a.Children(end)],{'samwise','GMM'},'Location','best');
+axH = plot(sol,'cp',opt,{'Markersize',3,'Color',[0.1725,0.4902,0.6275],'LineStyle','none','Marker','o','MarkerFaceColor','w'});
+legend([axH{1}.Children(1),axH{1}.Children(end)],{'samwise','GMM'},'Location','best');
 ylim([0 4.5])
 
 

@@ -48,7 +48,7 @@ varNamesShort = {'k','cp','cg','att'};                                      % re
 varNames = {'wavenumber','phase velocity','group velocity','attenuation'};  % recognized variable names, full name
 plotAll = false;
 for i = 1:4                                                                 % loop variable names
-    if strcmpi(plotVar,varNamesShort{i}) || strcmpi(plotVar,varNames{i})    % option is in list of variables
+    if any(strcmpi(plotVar,varNamesShort{i})) || any(strcmpi(plotVar,varNames{i}))    % option is in list of variables
         plotInd(i) = true;                                                  % set flag
         break
     end

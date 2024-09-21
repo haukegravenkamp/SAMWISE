@@ -32,25 +32,36 @@ bCond(1).material = 2;                                                      % ma
 bCond(2) = bcUnbounded;                                                     % same for top surface
 bCond(2).location = 'top';
 bCond(2).material = 2;
+% We create two boundary conditions of type bcUnbounded, one for the bottom
+% and one for the top surface. In this case, both surfaces are coupled to
+% the same infinite material (water). For other cases, including different
+% materials and coupling to solids, see the other examples in this folder.
 
 %% settings
 
 opt = option;
 opt.model.unboundedModel = 'exact';                                         % exact boundary conditions -> multipareig solver
 % opt.model.unboundedModel = 'dashpot';                                     % approximate dashpot boundary conditions -> standard solver
+% when the model involves coupling to an unbounded domain, we can either
+% choose a fast but not necessarily accurate 'dashpot' approximation, or a
+% rather expensive but exact formulation of the boundary condition.
 
-opt.plotting.maxAttenuation = 2000;
-opt.plotting.waveFieldLx = 4;
-opt.plotting.waveFieldLz = 1;
-opt.numerics.unboundedRemoveIncoming = ~true;
-opt.numerics.removeNegativeAttenuation = ~true;
-opt.numerics.unboundedRemoveThreshold = -1e-2;
+opt.plotting.maxAttenuation = 2000;                                         % maximum attenuation of modes to plot
+opt.plotting.waveFieldLx = 4;                                               % how long of a plate section to plot when displaying wave fields
+opt.plotting.waveFieldLz = 1;                                               % extent of infinite domain in plot
+
+opt.numerics.unboundedRemoveIncoming = ~true;                               % whether to filter out incoming waves in postprocessing
+opt.numerics.removeNegativeAttenuation = ~true;                             % whether to filter out modes with negative attenuation
+opt.numerics.unboundedRemoveThreshold = -1e-2;                              % relative threshold for finding incoming waves
 
 %% solver
 sol = solverDispersion;
 sol.fMin = 0.001;
 sol.fMax = 4;
 sol.nSteps = 300;
+% note that it's sufficient to initialize the standard solver. The subclass
+% will be selection based on the boundary conditions and the unboundedModel
+% option.
 
 %% call program
 [geo, mat, bcd, sol, opt, res, msh, glb] = samwise(materials, geom, opt, bCond, sol);
