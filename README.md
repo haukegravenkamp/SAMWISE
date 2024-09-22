@@ -56,6 +56,18 @@ I selected a few particularly insightful examples that are documented in much de
 - \examples\publishedResults\2017_NURBS_CMAME\example_rail.m
 - \examples\publishedResults\2024_leakyWaves_JSV\example1_plate_BrassWater.m
 
+**Note:** It is recommended to download this code directly from github to ensure you obtain the latest published version.
+
+### a note on units
+
+The materials already stored in the database use a particular unit system such that, e.g., the Young's modulus is given in GPa, the mass density in g/cm³, velocities in km/s, and frequencies in MHz (technically, the consistent system of units is (mg,mm,µs)). The reason for this choice is that the numerical values of all material parameters are roughly of order 1 in typical applications. When defining your own materials, you can, of course, assume any system of units you like, as long as it is consistent.
+
+## author information
+
+Where adequate, this code may be cited as
+
+> H. Gravenkamp, “SAMWISE - Semi-Analytical Modeling of Waves in Structural Elements” 2024. <https://github.com/haukegravenkamp/SAMWISE>
+
 ## references
 
 Various closely related semi-analytical approaches have been around for decades and appear under different names in different communities. Hence, many researchers have made valuable contributions to this field, and it is impossible to include an exhaustive list here. However, to the interested reader who wants to understand more about the underlying theories, I would like to point out the early works by Waas, Kausel and others on what is now commonly referred to as Thin Layer Method in the field of soil mechanics [1-3]. In the context of ultrasonic waves, similar approaches are typically referenced as Semi-Analytical Finite Element Method, attributed to, e.g., Aalami, Gavrić, Hayashi and many others [4-6].
