@@ -71,13 +71,13 @@ sol.nSteps = 300;
 omKplot1 = [1*2*pi,0.25*2*pi];                                              % pick (k,omega) of mode to plot
 opt.plotting.wavefieldPointsPerWavelength = 25;                             % number of plotting points per wave length
 [~,~,omegaKmode1] = plotWavefields(sol,msh,omKplot1,opt,mat,bcd);           % plot requested mode
-set(gcf,'Position',[647   357   840   519])
+% set(gcf,'Position',[647   357   840   519])
 drawnow
 
 omKplot2 = [3.5*2*pi,8];                                                    % same for second mode
 opt.plotting.wavefieldPointsPerWavelength = 12;                             
 [~,~,omegaKmode2] = plotWavefields(sol,msh,omKplot2,opt,mat,bcd);
-set(gcf,'Position',[647   357   840   519])
+% set(gcf,'Position',[647   357   840   519])
 
 %% plot mode shape (line plots)
 plotModeshape(sol,msh,omKplot1,opt,mat,bcd);

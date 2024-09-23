@@ -2,7 +2,10 @@
 
 ## purpose
 
-SAMWISE is a Matlab code for the simulation of wave propagation phenomena in structures of constant cross-section, a.k.a. waveguides. More specifically, it can currently compute **dispersion curves** and **mode shapes** of linearly elastic and acoustic waves propagating along plates, cylinders, or more general three-dimensional structures of arbitrary cross-section.
+SAMWISE is a Matlab code for the simulation of wave propagation phenomena in structures of constant cross-section, a.k.a. waveguides. More specifically, it can currently compute **dispersion curves** and **mode shapes** of linearly elastic and acoustic waves propagating along plates, cylinders, and more general three-dimensional structures of arbitrary cross-section.
+
+<img src="examples/demo/demoFigures/brassWaterExample.png" width="700" height="273" alt="wave field example">
+
 
 ## approach
 
@@ -34,9 +37,18 @@ Features **not** yet included (but straightforward, let me know in case you need
 - piezoelectric materials
 - advanced damping models
 
+<img src="examples/demo/demoFigures/meshesExamples.png" width="700" height="264" alt="mesh examples">
+
 ## code structure
 
 SAMWISE uses an object-oriented structure. The user chooses geometries, materials, boundary conditions, solvers, and options, modifies their properties as needed and passes them to the code *samwise.m* in arbitrary order, **see examples below**. All possible properties and settings can easily be checked in the defintion of each object. Any object or property not provided by the user will be set to default values. If you want to take a deeper look, the file *samwiseMain.m* is the heart of the code. It follows standard finite-element procedures (meshing, assigning degrees of freedom, computing element matrices, assembly, solution). The code is designed such that it can be easily extended. For instance, we can create a new solver or a new geometry simply by adding a corresponding class, which can then directly be accessed in the input file. The computation of the finite element matrices is pretty general; hence, we can add different material behavior (e.g., piezo-electric materials) by defining a new PDE-object without worrying about connectivity and other finite-element procedures.
+
+### toolboxes
+
+This repository includes some functions of the MultiParEig Toolbox, which are required for modeling leaky wave problems:
+> Bor Plestenjak (2024). MultiParEig (<https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig>), MATLAB Central File Exchange.
+
+Other than that, SAMWISE does not use any toolboxes not included in the basic Matlab license.
 
 ## usage
 
@@ -44,7 +56,7 @@ Clone/download the repository and add the contained folders with all subfolders 
 
 Using the code is best understood by looking at the examples, of which there are many in the 'example' folder. The subfolder 'publishedResults' contains numerical examples that have previously been published in a paper. Hence, they are well-validated and linked to the publication, so that you have easy access to the underlying theory. The folder 'demo' contains other practical examples.
 
-I selected a few particularly insightful examples that are documented in much detail. To learn all essential features of the code, I recommend going through these examples in order and read the comments in the input files. Each example only explains in detail the features that were not already discussed in a previous example; hence, it is recommended to study them in order:
+I selected a few particularly insightful examples that are documented in much detail. To learn all essential features of the code, I recommend going through these examples and read the comments in the input files. Each example only explains in detail the features that were not already discussed in a previous example; hence, it is recommended to study them in order:
 
 - \examples\demo\example_minimal.m
 - \examples\demo\example_plate_Brass.m
@@ -60,7 +72,7 @@ I selected a few particularly insightful examples that are documented in much de
 
 ### a note on units
 
-The materials already stored in the database use a particular unit system such that, e.g., the Young's modulus is given in GPa, the mass density in g/cm³, velocities in km/s, and frequencies in MHz (technically, the consistent system of units is (mg,mm,µs)). The reason for this choice is that the numerical values of all material parameters are roughly of order 1 in typical applications. When defining your own materials, you can, of course, assume any system of units you like, as long as it is consistent.
+The materials already stored in the database use a particular unit system such that, e.g., the Young's modulus is given in GPa, the mass density in g/cm³, velocities in km/s, and frequencies in MHz (technically, the consistent system of units is (mg, mm, µs)). The reason for this choice is that the numerical values of all material parameters are roughly of order 1 in typical applications. When defining your own materials, you can, of course, assume any system of units you like, as long as it is consistent.
 
 ## author information
 
@@ -77,7 +89,7 @@ Particular developments that are included in this code include
 
 - Spectral elements of arbitrarily high order, which were introduced for waveguide modeling in [7,10]
 - Approximations of leaky guided waves by a dashpot boundary [11]
-- Quadrilateral elements with independent interpolation order on the four edges and in the interior [12]
+- Finite elements with independent poylnomial degrees on the four edges and in the interior [12]
 - Rigorous formulation of plates coupled to unbounded solid or fluid media [13]
 
 > [1] Waas, G. “Linear Two-Dimensional Analysis of Soil Dynamics Problems in Semi-Infinite Layered Media.” PhD Thesis, University of California, Berkeley, 1972.

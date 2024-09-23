@@ -82,8 +82,8 @@ cg(~ind) = nan;
 end
 att(~ind) = nan;
 
-for iw = 1:size(k,2)
-    [~,ind] = sort(real(k(:,iw)));
+for iw = 1:size(k,2)                                                        % loop frequencies
+    [~,ind] = sort(real(k(:,iw)));                                          % sort variable
     k(:,iw) = k(ind,iw);
     [~,ind] = sort(real(cp(:,iw)));
     cp(:,iw) = cp(ind,iw);
@@ -101,6 +101,11 @@ if ~isempty(cg)
 cg = cg(ind,:);
 end
 att = att(ind,:);
+
+% k = k(end:-1:1,:);
+% cp = cp(end:-1:1,:);
+% cg = cg(end:-1:1,:);
+% att = att(end:-1:1,:);
 
 kReal = real(k);
 plotVars = {k,cp,cg,att};                                                   % put in cell
@@ -158,7 +163,7 @@ for iPlot = 1:4                                                             % lo
         xPlot = repmat(xPlot,size(yPlot,2),1);
     end
 
-    plotHandles{iPlot} = plotVariable(xPlot,yPlot.',xlab,ylab,ylimits{iPlot},plotParameters,plotFontSizes);
+    plotHandles{iPlot} = plotVariable(xPlot.',yPlot,xlab,ylab,ylimits{iPlot},plotParameters,plotFontSizes);
 
 end
 
