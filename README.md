@@ -68,7 +68,7 @@ I selected a few particularly insightful examples that are documented in much de
 - \examples\publishedResults\2017_NURBS_CMAME\example_rail.m
 - \examples\publishedResults\2024_leakyWaves_JSV\example1_plate_BrassWater.m
 
-**Note:** It is recommended to download this code directly from github to ensure you obtain the latest published version.
+**Note:** It is recommended to download this code directly from github to ensure you obtain the latest published version: <https://github.com/haukegravenkamp/SAMWISE>
 
 ### a note on units
 
@@ -78,7 +78,9 @@ The materials already stored in the database use a particular unit system such t
 
 Where adequate, this code may be cited as
 
-> H. Gravenkamp, “SAMWISE - Semi-Analytical Modeling of Waves in Structural Elements” 2024. <https://github.com/haukegravenkamp/SAMWISE>
+> H. Gravenkamp, “SAMWISE - Semi-Analytical Modeling of Waves in Structural Elements” 2024. doi:10.5281/zenodo.13830671. <https://github.com/haukegravenkamp/SAMWISE>
+
+[![DOI](https://zenodo.org/badge/859596166.svg)](https://zenodo.org/doi/10.5281/zenodo.13830671)
 
 ## references
 
