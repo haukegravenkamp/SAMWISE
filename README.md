@@ -4,8 +4,9 @@
 
 SAMWISE is a Matlab code for the simulation of wave propagation phenomena in structures of constant cross-section, a.k.a. waveguides. More specifically, it can currently compute **dispersion curves** and **mode shapes** of linearly elastic and acoustic waves propagating along plates, cylinders, and more general three-dimensional structures of arbitrary cross-section.
 
-<img src="examples/demo/demoFigures/brassWaterExample.png" width="700" height="273" alt="wave field example">
-
+<p align="center">
+<img src="examples/demo/demoFigures/brassWaterExample.png" style="width=700; max-width: 90%; height: auto;" alt="wave field example">
+</p>
 
 ## approach
 
@@ -37,7 +38,9 @@ Features **not** yet included (but straightforward, let me know in case you need
 - piezoelectric materials
 - advanced damping models
 
-<img src="examples/demo/demoFigures/meshesExamples.png" width="700" height="264" alt="mesh examples">
+<p align="center">
+<img src="examples/demo/demoFigures/meshesExamples.png" style="width=700; max-width: 90%; height: auto;" alt="mesh examples">
+</p>
 
 ## code structure
 
